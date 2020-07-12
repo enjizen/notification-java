@@ -22,7 +22,7 @@ public class EmailService {
     private final TemplateEngine templateEngine;
 
     public void sent(Email email) throws MessagingException {
-        var ctx = new Context();
+        val ctx = new Context();
         email.getContent().forEach(ctx::setVariable);
 
         val content = templateEngine.process(email.getTemplate().getFileName(), ctx);

@@ -1,7 +1,6 @@
 package com.tua.wanchalerm.notification.controller;
 
 import com.tua.wanchalerm.notification.constant.EmailTemplate;
-import com.tua.wanchalerm.notification.constant.ResponseConstant;
 import com.tua.wanchalerm.notification.controller.request.EmailRequest;
 import com.tua.wanchalerm.notification.factory.ResponseFactory;
 import com.tua.wanchalerm.notification.model.Email;
@@ -31,7 +30,7 @@ public class EmailController {
     public ResponseEntity sendEmail(@RequestParam("template") EmailTemplate template, @RequestBody EmailRequest request) {
 
 
-        log.info("Start send email to {} and template type [{}]", request.getTo(), template.getTemplateName());
+        log.info("Start send email to {} and template type {}", request.getTo(), template.getTemplateName());
 
         var email = Email.builder()
                 .to(request.getTo())
@@ -49,7 +48,7 @@ public class EmailController {
             return responseFactory.error(HttpStatus.INTERNAL_SERVER_ERROR, GENERAL_ERROR_CODE);
         }
 
-        log.info("End send email to {} and template type [{}]", request.getTo(), template.getTemplateName());
+        log.info("End send email to {} and template type {}", request.getTo(), template.getTemplateName());
 
         return responseFactory.success();
     }
